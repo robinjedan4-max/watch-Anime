@@ -558,13 +558,6 @@ button.link.secondary:hover {
   100% { transform: translateX(0); }
 }
 
-@media (max-width: 640px) {
-  .login-page {
-    padding: 1.25rem;
-  }
-
-  .login-card {
-    padding: 1.6rem;
 /* Mobile & Responsive Design */
 @media (max-width: 768px) {
   .feature-grid {
@@ -883,7 +876,14 @@ button.link.secondary:hover {
 
   .brand-mark {
     width: 40px;
-    height: 40pxecff;
+    height: 40px;
+  }
+}
+
+[data-theme='light'] {
+  --bg-start: #eff4ff;
+  --bg-mid: #f7faff;
+  --bg-end: #e7ecff;
   --card: rgba(255, 255, 255, 0.85);
   --card-border: rgba(15, 23, 42, 0.08);
   --text-primary: #111827;
