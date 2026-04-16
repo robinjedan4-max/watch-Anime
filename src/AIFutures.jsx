@@ -23,7 +23,7 @@ const features = [
   },
 ];
 
-export default function AIFutures({ onBack }) {
+export default function AIFutures({ onBack, onLogout, onToAnime }) {
   return (
     <section className="ai-page">
       <div className="background-glow" aria-hidden="true">
@@ -35,9 +35,14 @@ export default function AIFutures({ onBack }) {
 
       <div className="aifutures-card animate-entry">
         <div className="page-header">
-          <button type="button" className="nav-back" onClick={onBack}>
-            <FiArrowLeft /> Back to sign in
-          </button>
+          <div className="nav-buttons">
+            <button type="button" className="nav-back" onClick={onToAnime || onBack}>
+              <FiArrowLeft /> Anime Library
+            </button>
+            <button type="button" className="logout-btn" onClick={onLogout}>
+              Logout
+            </button>
+          </div>
           <div>
             <p className="eyebrow">AI Futures</p>
             <h2>Experience the next generation of intelligent workflow design.</h2>

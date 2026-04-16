@@ -464,6 +464,32 @@ button.link.secondary:hover {
   background: rgba(255, 255, 255, 0.08);
 }
 
+.nav-buttons {
+  display: flex;
+  gap: 0.75rem;
+  margin-bottom: 1rem;
+}
+
+.logout-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.95rem 1.25rem;
+  border-radius: 16px;
+  border: 1px solid rgba(255, 115, 115, 0.3);
+  background: rgba(255, 115, 115, 0.08);
+  color: rgba(255, 115, 115, 0.9);
+  font-weight: 600;
+  cursor: pointer;
+  transition: transform 0.2s ease, background 0.2s ease, border-color 0.2s ease;
+}
+
+.logout-btn:hover {
+  transform: translateY(-1px);
+  background: rgba(255, 115, 115, 0.15);
+  border-color: rgba(255, 115, 115, 0.5);
+}
+
 .eyebrow {
   margin: 0 0 0.4rem;
   color: rgba(111, 125, 255, 0.9);
@@ -726,6 +752,16 @@ button.link.secondary:hover {
     gap: 0.4rem;
   }
 
+  .nav-buttons {
+    gap: 0.5rem;
+    margin-bottom: 0.75rem;
+  }
+
+  .logout-btn {
+    padding: 0.8rem 1rem;
+    font-size: 0.9rem;
+  }
+
   .eyebrow {
     font-size: 0.65rem;
   }
@@ -902,6 +938,17 @@ button.link.secondary:hover {
   .nav-back {
     padding: 0.7rem 0.9rem;
     border-radius: 12px;
+    font-size: 0.85rem;
+  }
+
+  .nav-buttons {
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+
+  .nav-back,
+  .logout-btn {
+    width: 100%;
   }
 
   .feature-card,

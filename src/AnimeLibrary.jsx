@@ -198,7 +198,7 @@ const toEmbedUrl = (url) => {
   return match ? `https://www.youtube-nocookie.com/embed/${match[1]}` : url;
 };
 
-export default function AnimeLibrary({ onBack }) {
+export default function AnimeLibrary({ onLogout, onExplore }) {
   const [activeId, setActiveId] = useState(animeShows[0].id);
   const [likes, setLikes] = useState({});
   const [dislikes, setDislikes] = useState({});
@@ -282,9 +282,14 @@ export default function AnimeLibrary({ onBack }) {
 
       <div className="anime-card animate-entry">
         <div className="page-header">
-          <button type="button" className="nav-back" onClick={onBack}>
-            <FiArrowLeft /> Back to sign in
-          </button>
+          <div className="nav-buttons">
+            <button type="button" className="nav-back" onClick={onExplore}>
+              <FiArrowLeft /> AI Futures
+            </button>
+            <button type="button" className="logout-btn" onClick={onLogout}>
+              Logout
+            </button>
+          </div>
 
           <div>
             <p className="eyebrow">World Anime Library</p>
