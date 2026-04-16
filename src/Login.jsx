@@ -63,7 +63,7 @@ export default function Login({ onExplore, onLoginSuccess }) {
       <div className="login-card-wrap">
         <div className="login-card animate-entry">
           <div className="card-topbar">
-            <div className="brand-mark">S</div>
+            <div className="brand-mark">A</div>
             <button
               type="button"
               className="theme-toggle"

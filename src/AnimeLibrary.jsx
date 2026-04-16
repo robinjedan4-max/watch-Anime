@@ -202,20 +202,26 @@ export default function AnimeLibrary({ onBack }) {
   const [activeId, setActiveId] = useState(animeShows[0].id);
   const [likes, setLikes] = useState({});
   const [dislikes, setDislikes] = useState({});
+  const [likeCounts, setLikeCounts] = useState({});
+  const [dislikeCounts, setDislikeCounts] = useState({});
   const activeShow = animeShows.find((show) => show.id === activeId);
 
   const toggleLike = (id) => {
     setLikes((prev) => ({ ...prev, [id]: !prev[id] }));
     if (dislikes[id]) {
       setDislikes((prev) => ({ ...prev, [id]: false }));
+      setDislikeCounts((prev) => ({ ...prev, [id]: Math.max(0, (prev[id] || 0) - 1) }));
     }
+    setLikeCounts((prev) => ({ ...prev, [id]: prev[id] ? (prev[id] - 1) : ((prev[id] || 0) + 1) }));
   };
 
   const toggleDislike = (id) => {
     setDislikes((prev) => ({ ...prev, [id]: !prev[id] }));
     if (likes[id]) {
       setLikes((prev) => ({ ...prev, [id]: false }));
+      setLikeCounts((prev) => ({ ...prev, [id]: Math.max(0, (prev[id] || 0) - 1) }));
     }
+    setDislikeCounts((prev) => ({ ...prev, [id]: prev[id] ? (prev[id] - 1) : ((prev[id] || 0) + 1) }));
   };
 
   return (
@@ -284,7 +290,7 @@ export default function AnimeLibrary({ onBack }) {
                     aria-label="Like this video"
                   >
                     <FiThumbsUp />
-                    <span>Like</span>
+                    <span>{likeCounts[show.id] || 0}</span>
                   </button>
                   <button
                     type="button"
@@ -293,7 +299,7 @@ export default function AnimeLibrary({ onBack }) {
                     aria-label="Dislike this video"
                   >
                     <FiThumbsDown />
-                    <span>Dislike</span>
+                    <span>{dislikeCounts[show.id] || 0}</span>
                   </button>
                 </div>
               </div>
