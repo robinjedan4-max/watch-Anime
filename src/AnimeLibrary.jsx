@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { FiArrowLeft, FiPlayCircle, FiVideo, FiStar } from 'react-icons/fi';
+import { FiArrowLeft, FiPlayCircle, FiVideo, FiStar, FiThumbsUp, FiThumbsDown } from 'react-icons/fi';
 
 const animeShows = [
   {
@@ -200,7 +200,23 @@ const toEmbedUrl = (url) => {
 
 export default function AnimeLibrary({ onBack }) {
   const [activeId, setActiveId] = useState(animeShows[0].id);
+  const [likes, setLikes] = useState({});
+  const [dislikes, setDislikes] = useState({});
   const activeShow = animeShows.find((show) => show.id === activeId);
+
+  const toggleLike = (id) => {
+    setLikes((prev) => ({ ...prev, [id]: !prev[id] }));
+    if (dislikes[id]) {
+      setDislikes((prev) => ({ ...prev, [id]: false }));
+    }
+  };
+
+  const toggleDislike = (id) => {
+    setDislikes((prev) => ({ ...prev, [id]: !prev[id] }));
+    if (likes[id]) {
+      setLikes((prev) => ({ ...prev, [id]: false }));
+    }
+  };
 
   return (
     <section className="anime-page">
@@ -249,6 +265,26 @@ export default function AnimeLibrary({ onBack }) {
                 <a href={show.watchUrl} target="_blank" rel="noreferrer" className="visit-link">
                   Watch on YouTube
                 </a>
+                <div className="reaction-buttons">
+                  <button
+                    type="button"
+                    className={`like-button ${likes[show.id] ? 'liked' : ''}`}
+                    onClick={() => toggleLike(show.id)}
+                    aria-label="Like this video"
+                  >
+                    <FiThumbsUp />
+                    <span>Like</span>
+                  </button>
+                  <button
+                    type="button"
+                    className={`dislike-button ${dislikes[show.id] ? 'disliked' : ''}`}
+                    onClick={() => toggleDislike(show.id)}
+                    aria-label="Dislike this video"
+                  >
+                    <FiThumbsDown />
+                    <span>Dislike</span>
+                  </button>
+                </div>
               </div>
 
               <div className="video-footer video-footer-card">
