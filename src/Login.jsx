@@ -76,8 +76,8 @@ export default function Login({ onExplore, onLoginSuccess }) {
 
           <div className="card-header">
             <div className="hero-illustration" aria-hidden="true" />
-            <h1>Sign in to SignalHQ</h1>
-            <p>Access your dashboard with a secure, modern sign-in experience.</p>
+            <h1>Sign in to Anime World</h1>
+            <p> Welcome my friend.</p>
           </div>
 
           <form onSubmit={handleSubmit} className={`login-form ${shake ? 'shake' : ''}`} noValidate>
