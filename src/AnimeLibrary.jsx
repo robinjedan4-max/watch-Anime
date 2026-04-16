@@ -1,5 +1,5 @@
-import { useState } from 'react';
-import { FiArrowLeft, FiPlayCircle, FiVideo, FiStar, FiThumbsUp, FiThumbsDown } from 'react-icons/fi';
+import { useState, useEffect } from 'react';
+import { FiArrowLeft, FiPlayCircle, FiVideo, FiStar, FiThumbsUp, FiThumbsDown, FiMessageCircle } from 'react-icons/fi';
 
 const animeShows = [
   {
@@ -202,26 +202,73 @@ export default function AnimeLibrary({ onBack }) {
   const [activeId, setActiveId] = useState(animeShows[0].id);
   const [likes, setLikes] = useState({});
   const [dislikes, setDislikes] = useState({});
-  const [likeCounts, setLikeCounts] = useState({});
-  const [dislikeCounts, setDislikeCounts] = useState({});
+  const [globalLikes, setGlobalLikes] = useState({});
+  const [globalDislikes, setGlobalDislikes] = useState({});
+  const [comments, setComments] = useState({});
+  const [commentText, setCommentText] = useState({});
+  const [showComments, setShowComments] = useState({});
   const activeShow = animeShows.find((show) => show.id === activeId);
+
+  // Load data from localStorage on mount
+  useEffect(() => {
+    const savedLikes = localStorage.getItem('globalLikes');
+    const savedDislikes = localStorage.getItem('globalDislikes');
+    const savedComments = localStorage.getItem('comments');
+    
+    if (savedLikes) setGlobalLikes(JSON.parse(savedLikes));
+    if (savedDislikes) setGlobalDislikes(JSON.parse(savedDislikes));
+    if (savedComments) setComments(JSON.parse(savedComments));
+  }, []);
+
+  // Save data to localStorage whenever it changes
+  useEffect(() => {
+    localStorage.setItem('globalLikes', JSON.stringify(globalLikes));
+  }, [globalLikes]);
+
+  useEffect(() => {
+    localStorage.setItem('globalDislikes', JSON.stringify(globalDislikes));
+  }, [globalDislikes]);
+
+  useEffect(() => {
+    localStorage.setItem('comments', JSON.stringify(comments));
+  }, [comments]);
 
   const toggleLike = (id) => {
     setLikes((prev) => ({ ...prev, [id]: !prev[id] }));
     if (dislikes[id]) {
       setDislikes((prev) => ({ ...prev, [id]: false }));
-      setDislikeCounts((prev) => ({ ...prev, [id]: Math.max(0, (prev[id] || 0) - 1) }));
+      setGlobalDislikes((prev) => ({ ...prev, [id]: Math.max(0, (prev[id] || 0) - 1) }));
     }
-    setLikeCounts((prev) => ({ ...prev, [id]: prev[id] ? (prev[id] - 1) : ((prev[id] || 0) + 1) }));
+    setGlobalLikes((prev) => ({ 
+      ...prev, 
+      [id]: likes[id] ? Math.max(0, (prev[id] || 0) - 1) : ((prev[id] || 0) + 1)
+    }));
   };
 
   const toggleDislike = (id) => {
     setDislikes((prev) => ({ ...prev, [id]: !prev[id] }));
     if (likes[id]) {
       setLikes((prev) => ({ ...prev, [id]: false }));
-      setLikeCounts((prev) => ({ ...prev, [id]: Math.max(0, (prev[id] || 0) - 1) }));
+      setGlobalLikes((prev) => ({ ...prev, [id]: Math.max(0, (prev[id] || 0) - 1) }));
     }
-    setDislikeCounts((prev) => ({ ...prev, [id]: prev[id] ? (prev[id] - 1) : ((prev[id] || 0) + 1) }));
+    setGlobalDislikes((prev) => ({ 
+      ...prev, 
+      [id]: dislikes[id] ? Math.max(0, (prev[id] || 0) - 1) : ((prev[id] || 0) + 1)
+    }));
+  };
+
+  const addComment = (id) => {
+    if (!commentText[id]?.trim()) return;
+    
+    setComments((prev) => ({
+      ...prev,
+      [id]: [...(prev[id] || []), {
+        text: commentText[id],
+        time: new Date().toLocaleString(),
+        id: Date.now()
+      }]
+    }));
+    setCommentText((prev) => ({ ...prev, [id]: '' }));
   };
 
   return (
@@ -290,7 +337,7 @@ export default function AnimeLibrary({ onBack }) {
                     aria-label="Like this video"
                   >
                     <FiThumbsUp />
-                    <span>{likeCounts[show.id] || 0}</span>
+                    <span>{globalLikes[show.id] || 0}</span>
                   </button>
                   <button
                     type="button"
@@ -299,7 +346,16 @@ export default function AnimeLibrary({ onBack }) {
                     aria-label="Dislike this video"
                   >
                     <FiThumbsDown />
-                    <span>{dislikeCounts[show.id] || 0}</span>
+                    <span>{globalDislikes[show.id] || 0}</span>
+                  </button>
+                  <button
+                    type="button"
+                    className="comments-button"
+                    onClick={() => setShowComments((prev) => ({ ...prev, [show.id]: !prev[show.id] }))}
+                    aria-label="View comments"
+                  >
+                    <FiMessageCircle />
+                    <span>{(comments[show.id] || []).length}</span>
                   </button>
                 </div>
               </div>
@@ -314,6 +370,45 @@ export default function AnimeLibrary({ onBack }) {
                   <span>World anime catalog</span>
                 </div>
               </div>
+
+              {showComments[show.id] && (
+                <div className="comments-section">
+                  <div className="comments-header">
+                    <h4>Comments ({(comments[show.id] || []).length})</h4>
+                  </div>
+
+                  <div className="comments-list">
+                    {(comments[show.id] || []).map((comment) => (
+                      <div key={comment.id} className="comment-item">
+                        <p className="comment-text">{comment.text}</p>
+                        <small className="comment-time">{comment.time}</small>
+                      </div>
+                    ))}
+                  </div>
+
+                  <div className="comment-form">
+                    <input
+                      type="text"
+                      className="comment-input"
+                      placeholder="Add a comment..."
+                      value={commentText[show.id] || ''}
+                      onChange={(e) => setCommentText((prev) => ({ ...prev, [show.id]: e.target.value }))}
+                      onKeyPress={(e) => {
+                        if (e.key === 'Enter') {
+                          addComment(show.id);
+                        }
+                      }}
+                    />
+                    <button
+                      type="button"
+                      className="comment-submit"
+                      onClick={() => addComment(show.id)}
+                    >
+                      Post
+                    </button>
+                  </div>
+                </div>
+              )}
             </article>
           ))}
         </div>
