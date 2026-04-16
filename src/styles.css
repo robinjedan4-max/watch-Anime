@@ -565,38 +565,325 @@ button.link.secondary:hover {
 
   .login-card {
     padding: 1.6rem;
-    border-radius: 28px;
+/* Mobile & Responsive Design */
+@media (max-width: 768px) {
+  .feature-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .video-gallery {
+    grid-template-columns: 1fr;
+  }
+
+  .aifutures-card,
+  .anime-card {
+    padding: 1.5rem;
+  }
+}
+
+@media (max-width: 640px) {
+  :root {
+    font-size: 15px;
+  }
+
+  .login-page,
+  .ai-page,
+  .anime-page {
+    padding: 1rem;
+  }
+
+  .login-card,
+  .aifutures-card,
+  .anime-card {
+    padding: 1.25rem;
+    border-radius: 24px;
   }
 
   .card-topbar {
     gap: 0.75rem;
+    margin-bottom: 1.25rem;
+  }
+
+  .brand-mark {
+    width: 44px;
+    height: 44px;
+    font-size: 1rem;
+  }
+
+  .theme-toggle {
+    width: 40px;
+    height: 40px;
+    border-radius: 12px;
   }
 
   .hero-illustration {
-    width: 74px;
-    height: 74px;
-    margin-bottom: 0.9rem;
+    width: 64px;
+    height: 64px;
+    margin-bottom: 0.75rem;
   }
 
   h1 {
-    font-size: 1.75rem;
+    font-size: clamp(1.5rem, 5vw, 1.75rem);
+    margin-bottom: 0.5rem;
+  }
+
+  h2 {
+    font-size: clamp(1.5rem, 5vw, 2rem);
+  }
+
+  h3 {
+    font-size: 1rem;
   }
 
   p {
-    font-size: 0.95rem;
+    font-size: 0.9rem;
+    line-height: 1.5;
+  }
+
+  .card-header {
+    margin-bottom: 1.5rem;
+  }
+
+  .login-form {
+    gap: 1rem;
+  }
+
+  .input-group {
+    padding: 0.8rem 0.9rem 0.6rem;
+    border-radius: 18px;
+  }
+
+  .input-group input {
+    padding: 0.7rem 0.85rem 0.3rem 2.2rem;
+    font-size: 0.9rem;
+  }
+
+  .input-icon {
+    font-size: 1rem;
+    top: 1rem;
+    left: 0.9rem;
+  }
+
+  .input-group label {
+    left: 2.2rem;
+  }
+
+  .password-toggle {
+    padding: 0.35rem;
+  }
+
+  .login-button {
+    padding: 0.9rem 1rem;
+    border-radius: 16px;
+    font-size: 1rem;
+    min-height: 48px;
   }
 
   .login-footer {
     flex-direction: column;
-    align-items: flex-start;
+    align-items: stretch;
+    gap: 0.75rem;
+    font-size: 0.85rem;
+  }
+
+  .login-footer .link {
+    display: block;
+    text-align: left;
+  }
+
+  .login-footer .accent {
+    text-align: right;
+  }
+
+  .explore-cta {
+    margin-top: 0.5rem;
+  }
+
+  button.link.secondary {
+    font-size: 0.85rem;
+  }
+
+  .page-header {
+    gap: 1rem;
+    margin-bottom: 1.5rem;
+  }
+
+  .nav-back {
+    padding: 0.8rem 1rem;
+    font-size: 0.9rem;
+    gap: 0.4rem;
+  }
+
+  .eyebrow {
+    font-size: 0.65rem;
+  }
+
+  .feature-grid {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+  }
+
+  .feature-card {
+    padding: 1.2rem;
+  }
+
+  .feature-icon {
+    width: 44px;
+    height: 44px;
+    font-size: 1.3rem;
+  }
+
+  .aifutures-note {
+    padding: 1rem 1rem;
+    margin-top: 1.25rem;
+  }
+
+  .video-gallery {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+  }
+
+  .video-card {
+    padding: 1rem;
+  }
+
+  .video-card-top {
+    flex-direction: column;
     gap: 0.5rem;
+  }
+
+  .video-card-top h3 {
+    font-size: 1.05rem;
+    margin: 0;
+  }
+
+  .video-card-top p {
+    font-size: 0.85rem;
+  }
+
+  .video-card-icon {
+    font-size: 1.5rem;
+  }
+
+  .video-frame {
+    aspect-ratio: 16 / 9;
+    border-radius: 18px;
+  }
+
+  .video-cta-row {
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+
+  .visit-link,
+  .like-button,
+  .dislike-button {
+    width: 100%;
+    padding: 0.65rem 1rem;
+    font-size: 0.85rem;
+  }
+
+  .reaction-buttons {
+    width: 100%;
+    flex-direction: column;
+  }
+
+  .like-button,
+  .dislike-button {
+    justify-content: center;
+  }
+
+  .video-unavailable {
+    min-height: 180px;
+    padding: 1rem;
+  }
+
+  .video-footer {
+    flex-wrap: wrap;
+    gap: 0.3rem;
+    font-size: 0.8rem;
+  }
+
+  .video-footer div {
+    padding: 0.6rem 0.8rem;
+    font-size: 0.75rem;
+  }
+
+  .footer-action-btn {
+    padding: 0.6rem 0.8rem;
+    font-size: 0.75rem;
   }
 }
 
-[data-theme='light'] {
-  --bg-start: #eff4ff;
-  --bg-mid: #f7faff;
-  --bg-end: #e7ecff;
+@media (max-width: 480px) {
+  :root {
+    font-size: 14px;
+  }
+
+  .login-page,
+  .ai-page,
+  .anime-page {
+    padding: 0.75rem;
+  }
+
+  .login-card,
+  .aifutures-card,
+  .anime-card {
+    padding: 1rem;
+    padding-top: 1.25rem;
+  }
+
+  h1 {
+    font-size: 1.35rem;
+  }
+
+  h2 {
+    font-size: 1.25rem;
+  }
+
+  .login-button {
+    min-height: 44px;
+    padding: 0.8rem 0.85rem;
+  }
+
+  .nav-back {
+    padding: 0.7rem 0.9rem;
+    border-radius: 12px;
+  }
+
+  .feature-card,
+  .video-card {
+    padding: 1rem;
+  }
+
+  .float-dot {
+    opacity: 0.5;
+    filter: blur(16px);
+  }
+}
+
+@media (max-width: 320px) {
+  :root {
+    font-size: 13px;
+  }
+
+  .login-card,
+  .aifutures-card,
+  .anime-card {
+    padding: 0.85rem;
+  }
+
+  h1 {
+    font-size: 1.2rem;
+  }
+
+  .input-group input {
+    font-size: 0.85rem;
+  }
+
+  .brand-mark {
+    width: 40px;
+    height: 40pxecff;
   --card: rgba(255, 255, 255, 0.85);
   --card-border: rgba(15, 23, 42, 0.08);
   --text-primary: #111827;
