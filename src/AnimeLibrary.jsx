@@ -254,11 +254,22 @@ export default function AnimeLibrary({ onBack }) {
 
               <div className="video-frame">
                 <iframe
-                  src={toEmbedUrl(show.video)}
+                  src={`${toEmbedUrl(show.video)}?rel=0&modestbranding=1&playsinline=1`}
                   title={`Watch ${show.title}`}
-                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
                   allowFullScreen
+                  loading="lazy"
+                  frameBorder="0"
+                  style={{ width: '100%', height: '100%' }}
+                  onError={(e) => {
+                    e.target.style.display = 'none';
+                    e.target.nextSibling.style.display = 'flex';
+                  }}
                 />
+                <div className="video-unavailable" style={{ display: 'none' }}>
+                  <p>Video unavailable</p>
+                  <small>Tap "Watch on YouTube" to view</small>
+                </div>
               </div>
 
               <div className="video-cta-row">

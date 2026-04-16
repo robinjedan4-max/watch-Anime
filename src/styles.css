@@ -780,6 +780,21 @@ button.link.secondary:hover {
   .video-frame {
     aspect-ratio: 16 / 9;
     border-radius: 18px;
+    overflow: hidden;
+    background: #000;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.04);
+    position: relative;
+  }
+
+  .video-frame iframe {
+    width: 100%;
+    height: 100%;
+    border: none;
+    border-radius: inherit;
+    position: absolute;
+    top: 0;
+    left: 0;
   }
 
   .video-cta-row {
@@ -1032,6 +1047,7 @@ button.link.secondary:hover {
   width: 100%;
   height: 100%;
   border: none;
+  border-radius: inherit;
 }
 
 .video-cta-row {
