@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react';
 import Login from './Login';
 import AIFutures from './AIFutures';
 import AnimeLibrary from './AnimeLibrary';
+import Profile from './Profile';
 
 function App() {
   const [view, setView] = useState(() => {
@@ -48,13 +49,21 @@ function App() {
         <AIFutures 
           onBack={() => setView('anime')}
           onToAnime={() => setView('anime')}
+          onProfile={() => setView('profile')}
           onLogout={handleLogout}
         />
       )}
       {view === 'anime' && (
         <AnimeLibrary 
-          onLogout={handleLogout}
+          onProfile={() => setView('profile')}
           onExplore={() => setView('ai-futures')}
+          onLogout={handleLogout}
+        />
+      )}
+      {view === 'profile' && (
+        <Profile
+          onBack={() => setView('anime')}
+          onLogout={handleLogout}
         />
       )}
     </div>

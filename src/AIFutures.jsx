@@ -1,4 +1,4 @@
-import { FiArrowLeft, FiCpu, FiTrendingUp, FiShield, FiZap } from 'react-icons/fi';
+import { FiArrowLeft, FiCpu, FiTrendingUp, FiShield, FiZap, FiUser } from 'react-icons/fi';
 
 const features = [
   {
@@ -23,7 +23,7 @@ const features = [
   },
 ];
 
-export default function AIFutures({ onBack, onLogout, onToAnime }) {
+export default function AIFutures({ onBack, onProfile, onLogout, onToAnime }) {
   return (
     <section className="ai-page">
       <div className="background-glow" aria-hidden="true">
@@ -38,6 +38,9 @@ export default function AIFutures({ onBack, onLogout, onToAnime }) {
           <div className="nav-buttons">
             <button type="button" className="nav-back" onClick={onToAnime || onBack}>
               <FiArrowLeft /> Anime Library
+            </button>
+            <button type="button" className="profile-btn" onClick={onProfile}>
+              <FiUser /> Profile
             </button>
             <button type="button" className="logout-btn" onClick={onLogout}>
               Logout

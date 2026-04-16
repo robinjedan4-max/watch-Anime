@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { FiArrowLeft, FiPlayCircle, FiVideo, FiStar, FiThumbsUp, FiThumbsDown, FiMessageCircle } from 'react-icons/fi';
+import { FiArrowLeft, FiPlayCircle, FiVideo, FiStar, FiThumbsUp, FiThumbsDown, FiMessageCircle, FiUser } from 'react-icons/fi';
 
 const animeShows = [
   {
@@ -198,7 +198,7 @@ const toEmbedUrl = (url) => {
   return match ? `https://www.youtube-nocookie.com/embed/${match[1]}` : url;
 };
 
-export default function AnimeLibrary({ onLogout, onExplore }) {
+export default function AnimeLibrary({ onProfile, onExplore, onLogout }) {
   const [activeId, setActiveId] = useState(animeShows[0].id);
   const [likes, setLikes] = useState({});
   const [dislikes, setDislikes] = useState({});
@@ -285,6 +285,9 @@ export default function AnimeLibrary({ onLogout, onExplore }) {
           <div className="nav-buttons">
             <button type="button" className="nav-back" onClick={onExplore}>
               <FiArrowLeft /> AI Futures
+            </button>
+            <button type="button" className="profile-btn" onClick={onProfile}>
+              <FiUser /> Profile
             </button>
             <button type="button" className="logout-btn" onClick={onLogout}>
               Logout
