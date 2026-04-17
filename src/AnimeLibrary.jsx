@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 import { useState, useEffect } from 'react';
 import { FiArrowLeft, FiPlayCircle, FiVideo, FiStar, FiThumbsUp, FiThumbsDown, FiMessageCircle, FiUser } from 'react-icons/fi';
 
@@ -425,9 +424,6 @@ export default function AnimeLibrary({ onProfile, onExplore, onLogout }) {
     </section>
   );
 }
-=======
-import { useState, useEffect } from 'react';
-import { FiArrowLeft, FiPlayCircle, FiVideo, FiStar, FiThumbsUp, FiThumbsDown, FiMessageCircle, FiUser } from 'react-icons/fi';
 
 const animeShows = [
   {
