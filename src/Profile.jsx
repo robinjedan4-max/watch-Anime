@@ -48,9 +48,6 @@ export default function Profile({ onBack, onLogout }) {
             <button type="button" className="nav-back" onClick={onBack}>
               <FiArrowLeft /> Back
             </button>
-            <button type="button" className="logout-btn" onClick={onLogout}>
-              Logout
-            </button>
           </div>
         </div>
 
@@ -172,6 +169,12 @@ export default function Profile({ onBack, onLogout }) {
               </span>
             </div>
           </div>
+        </div>
+
+        <div className="profile-footer">
+          <button type="button" className="logout-btn" onClick={onLogout}>
+            Logout
+          </button>
         </div>
       </div>
     </section>

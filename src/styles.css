@@ -1491,6 +1491,16 @@ button.link.secondary:hover {
   margin-bottom: 2rem;
 }
 
+.profile-footer {
+  padding-top: 1.5rem;
+  border-top: 1px solid rgba(255, 255, 255, 0.05);
+  margin-top: 1rem;
+}
+
+.profile-footer .logout-btn {
+  width: 100%;
+}
+
 .profile-content {
   display: flex;
   flex-direction: column;
