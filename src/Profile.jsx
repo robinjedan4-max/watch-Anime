@@ -1,19 +1,11 @@
 import { useState, useEffect } from 'react';
 import { FiArrowLeft, FiEdit2, FiSave, FiX, FiUser, FiMail, FiCalendar } from 'react-icons/fi';
 
-<<<<<<< HEAD
-export default function Profile({ onBack, onLogout }) {
-  const [profile, setProfile] = useState(() => {
-    const saved = localStorage.getItem('userProfile');
-    return saved ? JSON.parse(saved) : {
-      username: 'Anime Lover',
-=======
 export default function Profile({ onBack, onLogout, currentUser, setCurrentUser }) {
   const [profile, setProfile] = useState(() => {
     const saved = localStorage.getItem(`userProfile_${currentUser}`);
     return saved ? JSON.parse(saved) : {
       username: currentUser,
->>>>>>> 6afdfefc5678807e326ebcb1c43b15dc90e55f95
       email: 'user@example.com',
       joinedDate: new Date().toLocaleDateString(),
       bio: 'Exploring the world of anime',
@@ -24,12 +16,6 @@ export default function Profile({ onBack, onLogout, currentUser, setCurrentUser 
   const [editData, setEditData] = useState(profile);
 
   useEffect(() => {
-<<<<<<< HEAD
-    localStorage.setItem('userProfile', JSON.stringify(profile));
-  }, [profile]);
-
-  const handleSave = () => {
-=======
     localStorage.setItem(`userProfile_${currentUser}`, JSON.stringify(profile));
   }, [profile, currentUser]);
 
@@ -38,7 +24,6 @@ export default function Profile({ onBack, onLogout, currentUser, setCurrentUser 
       // Username changed, update currentUser
       setCurrentUser(editData.username);
     }
->>>>>>> 6afdfefc5678807e326ebcb1c43b15dc90e55f95
     setProfile(editData);
     setIsEditing(false);
   };
@@ -67,12 +52,9 @@ export default function Profile({ onBack, onLogout, currentUser, setCurrentUser 
             <button type="button" className="nav-back" onClick={onBack}>
               <FiArrowLeft /> Back
             </button>
-<<<<<<< HEAD
-=======
             <button type="button" className="logout-btn" onClick={onLogout}>
               Logout
             </button>
->>>>>>> 6afdfefc5678807e326ebcb1c43b15dc90e55f95
           </div>
         </div>
 
@@ -195,15 +177,6 @@ export default function Profile({ onBack, onLogout, currentUser, setCurrentUser 
             </div>
           </div>
         </div>
-<<<<<<< HEAD
-
-        <div className="profile-footer">
-          <button type="button" className="logout-btn" onClick={onLogout}>
-            Logout
-          </button>
-        </div>
-=======
->>>>>>> 6afdfefc5678807e326ebcb1c43b15dc90e55f95
       </div>
     </section>
   );

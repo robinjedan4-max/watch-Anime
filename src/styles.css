@@ -2612,6 +2612,31 @@ button.link.secondary:hover {
   }
 
   .visit-link,
+  .download-link,
+  .like-button,
+  .dislike-button,
+  .comments-button {
+    width: 100%;
+    padding: 0.65rem 1rem;
+    font-size: 0.85rem;
+    gap: 0.3rem;
+    border-radius: 16px;
+  }
+
+  .download-link {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(79, 237, 175, 0.12);
+    border: 1px solid rgba(79, 237, 175, 0.2);
+    color: #b6ffe0;
+  }
+
+  .download-link:hover {
+    background: rgba(79, 237, 175, 0.18);
+  }
+
+  .visit-link,
   .like-button,
   .dislike-button,
   .comments-button {
@@ -2639,6 +2664,23 @@ button.link.secondary:hover {
   .video-unavailable {
     min-height: 180px;
     padding: 1rem;
+    display: grid;
+    place-items: center;
+    gap: 0.5rem;
+    text-align: center;
+    background: rgba(0, 0, 0, 0.18);
+    border-radius: 18px;
+    border: 1px dashed rgba(255, 255, 255, 0.1);
+  }
+
+  .video-unavailable p {
+    margin: 0;
+    font-weight: 700;
+    color: #ffd2d2;
+  }
+
+  .video-unavailable small {
+    color: rgba(255, 255, 255, 0.7);
   }
 
   .video-footer {
